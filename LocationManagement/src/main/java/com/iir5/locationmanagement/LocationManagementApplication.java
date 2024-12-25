@@ -5,12 +5,12 @@ import com.iir5.locationmanagement.repositories.LocationRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
 
-@FeignClient
+@EnableFeignClients
 @SpringBootApplication
 public class LocationManagementApplication {
 

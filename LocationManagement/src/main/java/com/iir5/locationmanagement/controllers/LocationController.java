@@ -7,7 +7,6 @@ import com.iir5.locationmanagement.services.LocationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +17,21 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/locations")
-@RequiredArgsConstructor
 public class LocationController {
     @Autowired
     private final LocationService locationService;
     @Autowired
-    private PatientClient patientClient;
+    private final PatientClient patientClient;
 
-    @GetMapping("/{patientId}/last-movement-time")
-    public LocalDateTime getLastMovementTime(@PathVariable("patientId") Long patientId) {
+    public LocationController(LocationService locationService, PatientClient patientClient) {
+        this.locationService = locationService;
+        this.patientClient = patientClient;
+    }
+
+    @GetMapping("/{wearableId}/last-movement-time")
+    public LocalDateTime getLastMovementTime(@PathVariable("wearableId") String wearableId) {
         // Logic to retrieve the last movement time for the patient from your database or other source
-        return locationService.getLastMovementTime(patientId);
+        return locationService.getLastMovementTime(wearableId);
     }
 
     @PostMapping("/update")

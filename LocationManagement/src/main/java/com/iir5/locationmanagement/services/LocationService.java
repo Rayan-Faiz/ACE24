@@ -2,7 +2,6 @@ package com.iir5.locationmanagement.services;
 
 import com.iir5.locationmanagement.entities.Location;
 import com.iir5.locationmanagement.repositories.LocationRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +9,12 @@ import java.time.LocalDateTime;
 
 
 @Service
-@RequiredArgsConstructor
 public class LocationService {
     private final LocationRepository locationRepository;
+
+    public LocationService(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
+    }
 
     public Location addLocation(Location location) {
         location.setTimestamp(LocalDateTime.now());
@@ -23,9 +25,9 @@ public class LocationService {
         return locationRepository.findByWearableId(wearableId);
     }
 
-    public LocalDateTime getLastMovementTime(Long patientId) {
+    public LocalDateTime getLastMovementTime(String wearableId) {
         // Fetch the last recorded movement time from the database for the patient
-        Location location = locationRepository.findTopByPatientIdOrderByTimestampDesc(patientId);
+        Location location = locationRepository.findTopByWearableIdOrderByTimestampDesc(wearableId);
         return (location != null) ? location.getTimestamp() : null;
     }
 
