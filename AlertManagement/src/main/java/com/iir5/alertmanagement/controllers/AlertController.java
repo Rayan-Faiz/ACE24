@@ -1,4 +1,8 @@
+package com.iir5.alertmanagement.controllers;
+
 import com.iir5.alertmanagement.entites.Alert;
+import com.iir5.alertmanagement.services.AlertService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
