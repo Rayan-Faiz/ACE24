@@ -1,6 +1,6 @@
-package com.mediplants.app.configs;
+package com.AuthManagement.app.configs;
 
-import com.mediplants.app.services.JwtService;
+import com.AuthManagement.app.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

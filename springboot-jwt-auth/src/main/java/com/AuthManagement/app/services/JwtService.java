@@ -1,4 +1,4 @@
-package com.mediplants.app.services;
+package com.AuthManagement.app.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

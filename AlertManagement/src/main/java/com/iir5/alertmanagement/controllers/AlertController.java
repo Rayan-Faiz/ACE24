@@ -1,10 +1,6 @@
-package com.iir5.alertmanagement.controllers;
-
 import com.iir5.alertmanagement.entites.Alert;
-import com.iir5.alertmanagement.services.AlertService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -24,6 +20,11 @@ public class AlertController {
         return ResponseEntity.ok(alertService.getAlertsByPatientId(patientId));
     }
 
+    @GetMapping
+    public ResponseEntity<List<Alert>> getAllAlerts() {
+        return ResponseEntity.ok(alertService.getAllAlerts());
+    }
+
     @PutMapping("/{alertId}/status")
     public ResponseEntity<Alert> updateAlertStatus(
             @PathVariable Long alertId,
@@ -31,5 +32,10 @@ public class AlertController {
     ) {
         return ResponseEntity.ok(alertService.updateAlertStatus(alertId, status));
     }
-}
 
+    @DeleteMapping("/{alertId}")
+    public ResponseEntity<Void> deleteAlert(@PathVariable Long alertId) {
+        alertService.deleteAlert(alertId);
+        return ResponseEntity.noContent().build();
+    }
+}

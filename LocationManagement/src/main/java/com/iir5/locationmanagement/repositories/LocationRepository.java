@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface LocationRepository extends MongoRepository<Location, String> {
     List<Location> findByWearableId(String wearableId);
+
+    Location findTopByPatientIdOrderByTimestampDesc(Long patientId);
 }
 

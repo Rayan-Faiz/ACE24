@@ -1,6 +1,6 @@
-package com.mediplants.app.repositories;
+package com.AuthManagement.app.repositories;
 
-import com.mediplants.app.entities.User;
+import com.AuthManagement.app.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

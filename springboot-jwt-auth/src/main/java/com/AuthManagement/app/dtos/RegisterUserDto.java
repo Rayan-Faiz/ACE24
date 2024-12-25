@@ -1,4 +1,4 @@
-package com.mediplants.app.dtos;
+package com.AuthManagement.app.dtos;
 
 public class RegisterUserDto {
     private String email;

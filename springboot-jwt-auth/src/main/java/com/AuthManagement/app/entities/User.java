@@ -1,5 +1,4 @@
-
-package com.mediplants.app.entities;
+package com.AuthManagement.app.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -35,6 +34,16 @@ public class User implements UserDetails {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Date updatedAt;
+
+    public User(Integer id, String fullName, String email) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+    }
+
+    public User() {
+
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

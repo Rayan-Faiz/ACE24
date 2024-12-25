@@ -1,6 +1,6 @@
-package com.mediplants.app.configs;
+package com.AuthManagement.app.configs;
 
-import com.mediplants.app.repositories.UserRepository;
+import com.AuthManagement.app.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

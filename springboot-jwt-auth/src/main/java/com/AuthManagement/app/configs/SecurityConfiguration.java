@@ -1,4 +1,4 @@
-package com.mediplants.app.configs;
+package com.AuthManagement.app.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,9 +31,8 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
-                .disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/auth/**")
+                .disable().authorizeHttpRequests()
+                .requestMatchers("/auth/**", "/v3/**", "/swagger-ui.html", "/swagger-resources/**", "/swagger-resources/configuration/ui", "swagger-ui/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

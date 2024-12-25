@@ -1,9 +1,9 @@
-package com.mediplants.app.services;
+package com.AuthManagement.app.services;
 
-import com.mediplants.app.dtos.LoginUserDto;
-import com.mediplants.app.dtos.RegisterUserDto;
-import com.mediplants.app.entities.User;
-import com.mediplants.app.repositories.UserRepository;
+import com.AuthManagement.app.dtos.LoginUserDto;
+import com.AuthManagement.app.dtos.RegisterUserDto;
+import com.AuthManagement.app.entities.User;
+import com.AuthManagement.app.repositories.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthenticationService {
@@ -55,4 +56,5 @@ public class AuthenticationService {
 
         return users;
     }
+
 }

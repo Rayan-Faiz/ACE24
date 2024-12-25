@@ -1,4 +1,4 @@
-package com.mediplants.app.exceptions;
+package com.AuthManagement.app.exceptions;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;

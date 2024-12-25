@@ -1,4 +1,4 @@
-package com.mediplants.app.responses;
+package com.AuthManagement.app.responses;
 
 public class LoginResponse {
     private String token;

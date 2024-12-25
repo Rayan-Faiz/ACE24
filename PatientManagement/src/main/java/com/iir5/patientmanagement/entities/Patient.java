@@ -1,9 +1,7 @@
 package com.iir5.patientmanagement.entities;
 
-import com.iir5.patientmanagement.dtos.Caregiver;
+import com.iir5.patientmanagement.dtos.UserDto;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -17,9 +15,7 @@ public class Patient {
     private String medicalCondition;
     @Column(unique = true)
     private String wearableId;
-    ManyToOne
-    @Column(unique = true)
-    private Caregiver caregiver;
+    private Long userId;
     @OneToOne
     @JoinColumn(name = "Safezone_id")
     private SafeZone safeZone;
@@ -64,12 +60,12 @@ public class Patient {
         this.wearableId = wearableId;
     }
 
-    public Caregiver getCaregiver() {
-        return caregiver;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setCaregiver(Caregiver caregiver) {
-        this.caregiver = caregiver;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public SafeZone getSafeZone() {
@@ -86,12 +82,12 @@ public class Patient {
 
     private final LocalDateTime createdAt = LocalDateTime.now();
 
-    public Patient(Long id, String name, int age, String medicalCondition, String wearableId, Caregiver caregiver) {
+    public Patient(Long id, String name, int age, String medicalCondition, String wearableId, Long userId) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.medicalCondition = medicalCondition;
         this.wearableId = wearableId;
-        this.caregiver = caregiver;
+        this.userId = userId;
     }
 }

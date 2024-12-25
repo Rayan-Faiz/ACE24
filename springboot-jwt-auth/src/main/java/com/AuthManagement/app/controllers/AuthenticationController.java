@@ -1,11 +1,11 @@
-package com.mediplants.app.controllers;
+package com.AuthManagement.app.controllers;
 
-import com.mediplants.app.entities.User;
-import com.mediplants.app.services.AuthenticationService;
-import com.mediplants.app.services.JwtService;
-import com.mediplants.app.dtos.LoginUserDto;
-import com.mediplants.app.dtos.RegisterUserDto;
-import com.mediplants.app.responses.LoginResponse;
+import com.AuthManagement.app.entities.User;
+import com.AuthManagement.app.services.AuthenticationService;
+import com.AuthManagement.app.services.JwtService;
+import com.AuthManagement.app.dtos.LoginUserDto;
+import com.AuthManagement.app.dtos.RegisterUserDto;
+import com.AuthManagement.app.responses.LoginResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

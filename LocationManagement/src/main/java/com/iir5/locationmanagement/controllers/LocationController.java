@@ -13,24 +13,28 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/locations")
 @RequiredArgsConstructor
 public class LocationController {
+    @Autowired
     private final LocationService locationService;
     @Autowired
     private PatientClient patientClient;
+
+    @GetMapping("/{patientId}/last-movement-time")
+    public LocalDateTime getLastMovementTime(@PathVariable("patientId") Long patientId) {
+        // Logic to retrieve the last movement time for the patient from your database or other source
+        return locationService.getLastMovementTime(patientId);
+    }
 
     @PostMapping("/update")
     public ResponseEntity<String> updateLocation(@RequestBody Location locationUpdate) {
         // Retrieve patient by wearableId
         Patient patient = patientClient.getPatientByWearableId(locationUpdate.getWearableId()).getBody();
-
-        if (patient == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Patient not found for wearableId");
-        }
 
         // Process location data for the patient
         System.out.println("Location update for patient: " + patient.getName());

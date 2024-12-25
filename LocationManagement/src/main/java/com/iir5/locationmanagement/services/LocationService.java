@@ -22,5 +22,12 @@ public class LocationService {
     public List<Location> getLocationByWearableId(String wearableId) {
         return locationRepository.findByWearableId(wearableId);
     }
+
+    public LocalDateTime getLastMovementTime(Long patientId) {
+        // Fetch the last recorded movement time from the database for the patient
+        Location location = locationRepository.findTopByPatientIdOrderByTimestampDesc(patientId);
+        return (location != null) ? location.getTimestamp() : null;
+    }
+
 }
 
