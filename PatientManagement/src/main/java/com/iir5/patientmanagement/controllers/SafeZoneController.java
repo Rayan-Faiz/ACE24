@@ -2,7 +2,6 @@ package com.iir5.patientmanagement.controllers;
 
 import com.iir5.patientmanagement.entities.SafeZone;
 import com.iir5.patientmanagement.services.SafeZoneService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
