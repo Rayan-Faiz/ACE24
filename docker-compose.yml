@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+
+  auth-service:
+    build:
+      context: ./auth-service
+    ports:   
+      - "8089:8089"
+    networks:
+      - microservices-network
+
+  alert-service:
+    build:
+      context: ./alert-service
+    ports:
+      - "8083:8083"
+    networks:
+      - microservices-network
+
+  location-service:
+    build:
+      context: ./location-service
+    ports:
+      - "8082:8082"
+    networks:
+      - microservices-network
+
+  patient-service:
+    build:
+      context: ./patient-service
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+
