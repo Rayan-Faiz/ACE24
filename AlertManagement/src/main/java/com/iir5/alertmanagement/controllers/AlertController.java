@@ -2,7 +2,6 @@ package com.iir5.alertmanagement.controllers;
 
 import com.iir5.alertmanagement.entites.Alert;
 import com.iir5.alertmanagement.services.AlertService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +9,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/alerts")
-@RequiredArgsConstructor
 public class AlertController {
     private final AlertService alertService;
+
+    public AlertController(AlertService alertService) {
+        this.alertService = alertService;
+    }
 
     @PostMapping
     public ResponseEntity<Alert> createAlert(@RequestBody Alert alert) {

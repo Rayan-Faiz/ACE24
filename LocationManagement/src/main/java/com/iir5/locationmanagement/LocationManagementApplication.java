@@ -32,7 +32,7 @@ public class LocationManagementApplication {
             locationRepository.save(location2);
             locationRepository.save(location3);
 
-            System.out.println("Initialized location data in MongoDB.");
+            System.out.println("Initialized location data.");
         };
     }
 

@@ -8,19 +8,22 @@ import com.iir5.alertmanagement.dtos.Location;
 import com.iir5.alertmanagement.repositories.AlertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class AlertService {
     @Autowired
     private final LocationClient locationClient;
     @Autowired
     private final PatientClient patientClient;
     private final AlertRepository alertRepository;
+
+    public AlertService(LocationClient locationClient, PatientClient patientClient, AlertRepository alertRepository) {
+        this.locationClient = locationClient;
+        this.patientClient = patientClient;
+        this.alertRepository = alertRepository;
+    }
 
     // Create a new alert
     public Alert createAlert(Alert alert) {
@@ -53,13 +56,11 @@ public class AlertService {
     public void checkAndTriggerAlert(Long patientId) {
         Location location = locationClient.getLatestLocation(patientId);
         SafeZone safeZone = patientClient.getSafeZone(patientId);
-
         // Check if location is outside safe zone
         if (!isWithinSafeZone(location, safeZone)) {
             Alert alert = new Alert(null, patientId, "Patient out of safe zone", "Triggered", LocalDateTime.now(), "New");
             alertRepository.save(alert);
         }
-
         // Check if patient has not moved for more than 48 hours
         if (hasNotMovedForDays(patientId, 2)) {  // e.g., 2 days threshold
             Alert alert = new Alert(null, patientId, "No movement detected", "Triggered", LocalDateTime.now(), "New");
