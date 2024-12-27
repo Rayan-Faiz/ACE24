@@ -1,6 +1,5 @@
 package com.iir5.patientmanagement.entities;
 
-import com.iir5.patientmanagement.dtos.UserDto;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -8,21 +7,15 @@ import java.time.LocalDateTime;
 @Entity
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private int age;
     private String medicalCondition;
     @Column(unique = true)
-    private String wearableId;
+    private Long wearableId;
     private Long userId;
-    @OneToOne
-    @JoinColumn(name = "Safezone_id")
-    private SafeZone safeZone;
 
-    public Patient() {
-
-    }
+    public Patient() {}
 
     public void setId(Long id) {
         this.id = id;
@@ -52,11 +45,11 @@ public class Patient {
         this.medicalCondition = medicalCondition;
     }
 
-    public String getWearableId() {
+    public Long getWearableId() {
         return wearableId;
     }
 
-    public void setWearableId(String wearableId) {
+    public void setWearableId(Long wearableId) {
         this.wearableId = wearableId;
     }
 
@@ -68,21 +61,13 @@ public class Patient {
         this.userId = userId;
     }
 
-    public SafeZone getSafeZone() {
-        return safeZone;
-    }
-
-    public void setSafeZone(SafeZone safeZone) {
-        this.safeZone = safeZone;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
     private final LocalDateTime createdAt = LocalDateTime.now();
 
-    public Patient(Long id, String name, int age, String medicalCondition, String wearableId, Long userId) {
+    public Patient(Long id, String name, int age, String medicalCondition, Long wearableId, Long userId) {
         this.id = id;
         this.name = name;
         this.age = age;

@@ -12,7 +12,7 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String wearableId;
+    private Long wearableId;
     private double latitude;
     private double longitude;
     private LocalDateTime timestamp;
@@ -20,7 +20,7 @@ public class Location {
     public Location() {
     }
 
-    public Location(Long id, String wearableId, double latitude, double longitude, LocalDateTime timestamp) {
+    public Location(Long id, Long wearableId, double latitude, double longitude, LocalDateTime timestamp) {
         this.id = id;
         this.wearableId = wearableId;
         this.latitude = latitude;
@@ -36,11 +36,11 @@ public class Location {
         this.id = id;
     }
 
-    public String getWearableId() {
+    public Long getWearableId() {
         return wearableId;
     }
 
-    public void setWearableId(String wearableId) {
+    public void setWearableId(Long wearableId) {
         this.wearableId = wearableId;
     }
 

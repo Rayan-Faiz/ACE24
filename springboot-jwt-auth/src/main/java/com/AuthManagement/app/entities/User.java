@@ -14,9 +14,8 @@ import java.util.List;
 @Entity
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String fullName;
@@ -35,7 +34,7 @@ public class User implements UserDetails {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public User(Integer id, String fullName, String email) {
+    public User(Long id, String fullName, String email) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
@@ -79,11 +78,11 @@ public class User implements UserDetails {
         return true;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public User setId(Integer id) {
+    public User setId(Long id) {
         this.id = id;
         return this;
     }

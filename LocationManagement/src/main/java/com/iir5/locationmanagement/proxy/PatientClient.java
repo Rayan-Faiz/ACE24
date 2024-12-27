@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface PatientClient {
 
     @GetMapping("/wearable/{wearableId}")
-    ResponseEntity<Patient> getPatientByWearableId(@PathVariable String wearableId);
+    ResponseEntity<Patient> getPatientByWearableId(@PathVariable Long wearableId);
 }

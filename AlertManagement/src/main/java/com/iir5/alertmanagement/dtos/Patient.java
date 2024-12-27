@@ -8,7 +8,7 @@ public class Patient {
     private String name;
     private int age;
     private String medicalCondition;
-    private String wearableId;
+    private Long wearableId;
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public Long getId() {
@@ -43,11 +43,11 @@ public class Patient {
         this.medicalCondition = medicalCondition;
     }
 
-    public String getWearableId() {
+    public Long getWearableId() {
         return wearableId;
     }
 
-    public void setWearableId(String wearableId) {
+    public void setWearableId(Long wearableId) {
         this.wearableId = wearableId;
     }
 
@@ -62,7 +62,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(Long id, String name, int age, String medicalCondition, String wearableId, LocalDateTime createdAt) {
+    public Patient(Long id, String name, int age, String medicalCondition, Long wearableId, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.age = age;

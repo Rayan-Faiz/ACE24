@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface LocationRepository extends JpaRepository<Location, String> {
-    List<Location> findByWearableId(String wearableId);
+    List<Location> findByWearableId(Long wearableId);
 
-    Location findTopByWearableIdOrderByTimestampDesc(String wearableId);
+    Location findTopByWearableIdOrderByTimestampDesc(Long wearableId);
 }
 

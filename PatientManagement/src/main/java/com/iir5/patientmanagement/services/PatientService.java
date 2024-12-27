@@ -2,6 +2,7 @@ package com.iir5.patientmanagement.services;
 
 import com.iir5.patientmanagement.entities.Patient;
 import com.iir5.patientmanagement.repositories.PatientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class PatientService {
+
     private final PatientRepository patientRepository;
 
     public PatientService(PatientRepository patientRepository) {
@@ -27,7 +29,7 @@ public class PatientService {
     }
 
     // Find a patient by wearable ID
-    public ResponseEntity<Patient> findByWearableId(String wearableId) {
+    public ResponseEntity<Patient> findByWearableId(Long wearableId) {
         Optional<Patient> patient = patientRepository.findByWearableId(wearableId);
         return patient.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }

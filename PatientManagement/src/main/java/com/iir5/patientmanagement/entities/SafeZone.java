@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 @Entity
 public class SafeZone {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double latitude;
     private double longitude;

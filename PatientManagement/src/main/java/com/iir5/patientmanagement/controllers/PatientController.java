@@ -32,7 +32,7 @@ public class PatientController {
 
     // Get a specific patient by wearable ID
     @GetMapping("/wearable/{wearableId}")
-    public ResponseEntity<Patient> getPatientByWearableId(@PathVariable String wearableId) {
+    public ResponseEntity<Patient> getPatientByWearableId(@PathVariable Long wearableId) {
         return patientService.findByWearableId(wearableId);
     }
 

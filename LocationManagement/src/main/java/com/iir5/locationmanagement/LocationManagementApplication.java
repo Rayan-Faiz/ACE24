@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.time.LocalDateTime;
 
@@ -24,9 +25,9 @@ public class LocationManagementApplication {
     public CommandLineRunner initializeLocations() {
         return args -> {
             // Add some initial location data
-            Location location1 = new Location(null, "wearable_001", 34.052235, -118.243683, LocalDateTime.now());
-            Location location2 = new Location(null, "wearable_002", 37.774929, -122.419418, LocalDateTime.now().minusMinutes(5));
-            Location location3 = new Location(null, "wearable_003", 40.712776, -74.005974, LocalDateTime.now().minusMinutes(10));
+            Location location1 = new Location(null, 1L, 34.052235, -118.243683, LocalDateTime.now());
+            Location location2 = new Location(null, 2L, 37.774929, -122.419418, LocalDateTime.now().minusMinutes(5));
+            Location location3 = new Location(null, 3L, 40.712776, 7.005974, LocalDateTime.now().minusMinutes(10));
 
             locationRepository.save(location1);
             locationRepository.save(location2);

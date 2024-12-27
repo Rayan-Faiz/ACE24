@@ -3,15 +3,15 @@ package com.iir5.alertmanagement.dtos;
 public class SafeZone {
     private double latitude;
     private double longitude;
-    private double radiusMeters;
+    private double radius;
 
     // Constructors
     public SafeZone() {}
 
-    public SafeZone(double latitude, double longitude, double radiusMeters) {
+    public SafeZone(double latitude, double longitude, double radius) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.radiusMeters = radiusMeters;
+        this.radius = radius;
     }
 
     // Getters and Setters
@@ -31,12 +31,12 @@ public class SafeZone {
         this.longitude = longitude;
     }
 
-    public double getRadiusMeters() {
-        return radiusMeters;
+    public double getRadius() {
+        return radius;
     }
 
-    public void setRadiusMeters(double radiusMeters) {
-        this.radiusMeters = radiusMeters;
+    public void setRadius(double radiusMeters) {
+        this.radius = radiusMeters;
     }
 
     @Override
@@ -44,8 +44,9 @@ public class SafeZone {
         return "SafeZone{" +
                 "latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", radiusMeters=" + radiusMeters +
+                ", radius=" + radius +
                 '}';
     }
+
 }
 
