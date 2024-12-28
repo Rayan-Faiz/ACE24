@@ -1,6 +1,7 @@
 package com.iir5.patientmanagement.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
 
 import java.time.LocalDateTime;
 
@@ -14,8 +15,19 @@ public class Patient {
     @Column(unique = true)
     private Long wearableId;
     private Long userId;
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.REMOVE)
+    private SafeZone safeZone;
 
     public Patient() {}
+
+    public Patient(Long id, String name, int age, String medicalCondition, Long wearableId, Long userId) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.medicalCondition = medicalCondition;
+        this.wearableId = wearableId;
+        this.userId = userId;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -67,12 +79,4 @@ public class Patient {
 
     private final LocalDateTime createdAt = LocalDateTime.now();
 
-    public Patient(Long id, String name, int age, String medicalCondition, Long wearableId, Long userId) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.medicalCondition = medicalCondition;
-        this.wearableId = wearableId;
-        this.userId = userId;
-    }
 }
