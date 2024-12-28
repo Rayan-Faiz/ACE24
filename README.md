@@ -1,40 +1,74 @@
 [Report.pdf](https://github.com/user-attachments/files/18245526/Report.pdf)
 # Patient Monitoring and Localization System  
 
-## Overview  
-This project is a patient monitoring and localization system designed to enhance the safety and well-being of individuals with cognitive disorders. By real-time tracking, the system ensures that caregivers can respond quickly to potential risks, such as erratic movement or crossing defined safe zones.  
-
-## Features  
-- **Real-Time Tracking**: Monitor patients' locations in real time using GPS.  
-- **Geofencing**: Define and manage secure zones for each patient.  
-- **Alerts**: Detect unusual movements and send predictive alerts.  
-- **Data Visualization**: Historical movement patterns for detailed analysis.  
+A microservices-based platform for monitoring patients' safety using IoT , built with **Spring Boot** for the backend and **React** for the frontend. This system allows administrators to manage patients, monitor their locations , and receive notifications when patients leave their designated safe zones or stay for too long in one zone.
 
 ---
 
-## Tech Stack  
-The application uses modern and robust technologies with Microservices to deliver an efficient and scalable solution:  
-- **Backend**:  
-  - **Java**: For core business logic and APIs.  
-  - **Swagger**: For API documentation and testing.  
-- **Frontend**:  
-  - **React JS**: For building dynamic and interactive user interfaces.  
-  - **TypeScript**: For robust, type-safe code development.  
+## Table of Contents
+
+- [Software Architecture](#software-architecture)
+- [Frontend](#frontend)
+- [Backend](#backend)
+- [Features](#features)
+- [Contributing](#contributing)
 
 ---
 
-## Installation  
+## Software Architecture
+![software architechture](https://github.com/user-attachments/assets/3f9c50c2-bd4a-4fe2-a010-eb778c1fb3a5)
+This app has 4 microservices:
 
-### Prerequisites  
-- **Node.js** (v14 or higher)  
-- **Java** (JDK 11 or higher)  
-- **Maven** (for managing Java dependencies)  
-- **npm** (comes with Node.js)  
+Authentication Service: For user authentication and login.
+Patient Service: Manages patient details and their safe zones.
+Location Service: Tracks GPS locations of patients from IoT devices.
+Alert Service: Checks if patients are out of their safe zones and sends notifications.
+The app is built with Spring Boot for the backend and React for the frontend.
 
-### Backend Setup  
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/Rayan-Faiz/ACE24.git
-### Our Dashboard
-![fef47014-66e4-4bf1-8bfd-f67c90c9aead](https://github.com/user-attachments/assets/a0346145-f860-4eff-9336-dcd909614415)
+Frontend Interaction:
 
+Caregivers use the React frontend to log in, manage patients, view their locations on a map, and see notifications.
+Data Flow:
+
+GPS devices send patient location data to the Location Service.
+The Alert Service processes the location data and checks against safe zones.
+Notifications are displayed in the caregiver’s dashboard.
+
+## Technology Stack:
+
+Backend: Spring Boot (4 services)
+Frontend: React
+Database: MySQL (shared by all services)
+Communication: Feign (for service communication)
+Service Discovery: Eureka
+ ## Frontend
+Technologies Used:
+React
+Axios for API calls
+Bootstrap for responsive design
+## Backend
+Technologies Used:
+Spring Boot for microservices
+Spring Cloud Eureka for service discovery
+Feign Clients for inter-service communication
+MySQL for data storage
+
+## features
+Admin Dashboard:
+Manage caregivers and patients with CRUD operations.
+Patient Management:
+Add, update, and view patient details, including their safe zones
+Tracking:
+cheking patient locations / safe zone
+Alerts & Notifications:
+Receive notifications when a patient doesn't exit their safe zone (type of alert : safe zone breach)
+Receive alert when they haven't moved from the same place during 2 days (Unusual movement)
+Alerts have 3 states : new / acknowledge / resolved
+
+## Contributing
+ To contribute:
+
+Fork the repository
+Create a new feature branch
+Commit your changes
+Open a pull request
