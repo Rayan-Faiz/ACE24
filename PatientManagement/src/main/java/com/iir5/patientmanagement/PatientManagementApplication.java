@@ -95,7 +95,7 @@ public class PatientManagementApplication {
             patientRepository.save(patient9);
             patientRepository.save(patient10);
 
-            System.out.println("Database initialized with caregivers and patients.");
+            System.out.println("Database initialized with safezones and patients.");
         };
     }
 
