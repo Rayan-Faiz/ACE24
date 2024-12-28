@@ -1,6 +1,7 @@
 package com.iir5.patientmanagement.controllers;
 
 import com.iir5.patientmanagement.entities.Patient;
+import com.iir5.patientmanagement.entities.SafeZone;
 import com.iir5.patientmanagement.services.PatientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -68,5 +69,11 @@ public class PatientController {
 
         patientService.deletePatient(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // Get Safezone by Patient ID
+    @GetMapping("/{id}/safezone")
+    public ResponseEntity<SafeZone> getSafeZoneByPatientId(@PathVariable Long id) {
+        return patientService.getSafeZoneByPatientId(id);
     }
 }

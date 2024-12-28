@@ -1,25 +1,40 @@
 package com.iir5.patientmanagement.entities;
 
+
 import jakarta.persistence.*;
-import org.hibernate.engine.internal.Cascade;
 
 import java.time.LocalDateTime;
 
 @Entity
 public class Patient {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private int age;
     private String medicalCondition;
-    @Column(unique = true)
     private Long wearableId;
-    private Long userId;
-    @OneToOne(mappedBy = "patient", cascade = CascadeType.REMOVE)
+    private Long caregiverId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "safezone_id")
     private SafeZone safeZone;
+
+    public Patient(String name, int age, String medicalCondition, Long wearableId, Long caregiverId) {
+        this.name = name;
+        this.age = age;
+        this.medicalCondition = medicalCondition;
+        this.wearableId = wearableId;
+        this.caregiverId = caregiverId;
+    }
+
+    public Patient() {}
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public SafeZone getSafeZone() {
@@ -28,21 +43,6 @@ public class Patient {
 
     public void setSafeZone(SafeZone safeZone) {
         this.safeZone = safeZone;
-    }
-
-    public Patient() {}
-
-    public Patient(Long id, String name, int age, String medicalCondition, Long wearableId, Long userId) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.medicalCondition = medicalCondition;
-        this.wearableId = wearableId;
-        this.userId = userId;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -77,12 +77,12 @@ public class Patient {
         this.wearableId = wearableId;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getCaregiverId() {
+        return caregiverId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setCaregiverId(Long userId) {
+        this.caregiverId = userId;
     }
 
     public LocalDateTime getCreatedAt() {

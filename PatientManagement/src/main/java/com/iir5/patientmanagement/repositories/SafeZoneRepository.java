@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SafeZoneRepository extends JpaRepository<SafeZone, Long> {
-    SafeZone findByPatientId(Long patientId);
 }

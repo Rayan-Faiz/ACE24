@@ -21,10 +21,5 @@ public class SafeZoneController {
     public SafeZone addSafeZone(@RequestBody SafeZone safeZone) {
         return safeZoneService.addSafeZone(safeZone);
     }
-
-    @GetMapping("/{patientId}")
-    public SafeZone getSafeZone(@PathVariable Long patientId) {
-        return safeZoneService.getSafeZoneByPatientId(patientId);
-    }
 }
 

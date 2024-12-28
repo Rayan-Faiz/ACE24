@@ -26,23 +26,31 @@ public class PatientManagementApplication {
     @Bean
     public CommandLineRunner initializeDatabase() {
         return args -> {
+            //Add Safezone to link to patients
+            SafeZone safeZone1 = new SafeZone(31.6225, 7.9898, 600, LocalDateTime.now());
+            SafeZone safeZone2 = new SafeZone(24.6225, 19.9898, 500, LocalDateTime.now());
+            SafeZone safeZone3 = new SafeZone(39.6225, 12.9898, 500, LocalDateTime.now());
+
+            safeZoneRepository.save(safeZone1);
+            safeZoneRepository.save(safeZone2);
+            safeZoneRepository.save(safeZone3);
             // Add patients linked to caregivers
-            Patient patient1 = new Patient(1L, "Alice Johnson", 65, "Alzheimer's", 1L, 1L);
-            Patient patient2 = new Patient(2L, "Bob Brown", 72, "Dementia", 2L, 2L);
-            Patient patient3 = new Patient(3L, "Charlie Davis", 70, "Alzheimer's", 3L, 1L);
+            Patient patient1 = new Patient("Alice Johnson", 65, "Alzheimer's", 1L, 1L);
+            Patient patient2 = new Patient("Bob Brown", 72, "Dementia", 2L, 2L);
+            Patient patient3 = new Patient("Charlie Davis", 70, "Alzheimer's", 3L, 1L);
 
             patientRepository.save(patient1);
             patientRepository.save(patient2);
             patientRepository.save(patient3);
 
-            //Add Safezone to link to patients
-            SafeZone safeZone1 = new SafeZone(1L, 31.6225, 7.9898, 200, patient1, LocalDateTime.now());
-            SafeZone safeZone2 = new SafeZone(2L, 24.6225, 19.9898, 200, patient2, LocalDateTime.now());
-            SafeZone safeZone3 = new SafeZone(3L, 39.6225, 12.9898, 200, patient3, LocalDateTime.now());
+            // Assign SafeZone to the patients
+            patient1.setSafeZone(safeZone1);
+            patient2.setSafeZone(safeZone2);
+            patient3.setSafeZone(safeZone3);
 
-            safeZoneRepository.save(safeZone1);
-            safeZoneRepository.save(safeZone2);
-            safeZoneRepository.save(safeZone3);
+            patientRepository.save(patient1);
+            patientRepository.save(patient2);
+            patientRepository.save(patient3);
 
             System.out.println("Database initialized with caregivers and patients.");
         };

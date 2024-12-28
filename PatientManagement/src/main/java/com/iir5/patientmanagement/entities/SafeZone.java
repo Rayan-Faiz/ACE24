@@ -7,17 +7,17 @@ import java.time.LocalDateTime;
 @Entity
 public class SafeZone {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double latitude;
     private double longitude;
     private float radius;
-    @OneToOne
-    @JoinColumn(name = "Patient_id")
-    private Patient patient;
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public SafeZone(Long id, Long patientId, double latitude, double longitude, float radius, LocalDateTime createdAt) {
-        this.id = id;
+    public SafeZone() {
+    }
+
+    public SafeZone(double latitude, double longitude, float radius, LocalDateTime createdAt) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.radius = radius;
@@ -61,26 +61,6 @@ public class SafeZone {
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    public SafeZone() {
-    }
-
-    public SafeZone(Long id, double latitude, double longitude, float radius, Patient patient, LocalDateTime createdAt) {
-        this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.radius = radius;
-        this.patient = patient;
         this.createdAt = createdAt;
     }
 }

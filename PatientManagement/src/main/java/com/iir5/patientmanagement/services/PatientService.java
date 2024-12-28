@@ -1,6 +1,7 @@
 package com.iir5.patientmanagement.services;
 
 import com.iir5.patientmanagement.entities.Patient;
+import com.iir5.patientmanagement.entities.SafeZone;
 import com.iir5.patientmanagement.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public class PatientService {
-
+    @Autowired
     private final PatientRepository patientRepository;
 
     public PatientService(PatientRepository patientRepository) {
@@ -42,5 +43,19 @@ public class PatientService {
     // Delete a patient by ID
     public void deletePatient(Long id) {
         patientRepository.deleteById(id);
+    }
+
+    // Get SafeZone by Patient ID
+    public ResponseEntity<SafeZone> getSafeZoneByPatientId(Long patientId) {
+        Optional<Patient> patient = patientRepository.findById(patientId);
+        if (patient.isPresent()) {
+            SafeZone safeZone = patient.get().getSafeZone();
+            if (safeZone != null) {
+                return ResponseEntity.ok(safeZone);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
 }
