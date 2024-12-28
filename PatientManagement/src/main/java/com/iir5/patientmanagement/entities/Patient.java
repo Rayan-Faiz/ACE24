@@ -14,6 +14,20 @@ public class Patient {
     @Column(unique = true)
     private Long wearableId;
     private Long userId;
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.REMOVE)
+    private SafeZone safeZone;
+
+    public Long getId() {
+        return id;
+    }
+
+    public SafeZone getSafeZone() {
+        return safeZone;
+    }
+
+    public void setSafeZone(SafeZone safeZone) {
+        this.safeZone = safeZone;
+    }
 
     public Patient() {}
 
