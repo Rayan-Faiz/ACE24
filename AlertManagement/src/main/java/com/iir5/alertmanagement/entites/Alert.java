@@ -13,10 +13,10 @@ public class Alert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long patientId;
-    private String type; // e.g., "Safe Zone Breach", "Unusual Movement"
+    private String type;
     private String message;
     private LocalDateTime timestamp = LocalDateTime.now();
-    private String status; // e.g., "New", "Acknowledged", "Resolved"
+    private String status;
 
     public Long getId() {
         return id;

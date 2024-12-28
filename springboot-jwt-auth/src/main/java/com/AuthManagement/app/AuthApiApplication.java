@@ -28,14 +28,22 @@ public class AuthApiApplication {
 
 				User user2 = new User()
 						.setId(2L)
-						.setFullName("test")
-						.setEmail("testMail")
-						.setPassword(passwordEncoder.encode("test")); // Encode the password here
+						.setFullName("Jane Smith")
+						.setEmail("jane.smith@example.com")
+						.setPassword(passwordEncoder.encode("securepass456")); // Encode the password here
+
+				User user3 = new User()
+						.setId(3L)
+						.setFullName("Michael Brown")
+						.setEmail("michael.brown@example.com")
+						.setPassword(passwordEncoder.encode("mypassword789")); // Encode the password here
 
 				userRepository.save(user1);
 				userRepository.save(user2);
-				System.out.println("Users initialized!");
+				userRepository.save(user3);
+				System.out.println("3 users initialized!");
 			}
 		};
 	}
+
 }

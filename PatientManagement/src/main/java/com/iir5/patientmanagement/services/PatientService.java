@@ -58,4 +58,9 @@ public class PatientService {
         }
         return ResponseEntity.notFound().build();
     }
+
+    public List<Patient> findByCaregiverId(Long caregiverId) {
+        return patientRepository.findByCaregiverId(caregiverId);
+    }
+
 }

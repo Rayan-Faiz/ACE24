@@ -76,4 +76,15 @@ public class PatientController {
     public ResponseEntity<SafeZone> getSafeZoneByPatientId(@PathVariable Long id) {
         return patientService.getSafeZoneByPatientId(id);
     }
+
+    // Get a patient by User ID (caregiver ID)
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Patient>> getPatientsByUserId(@PathVariable Long userId) {
+        List<Patient> patients = patientService.findByCaregiverId(userId);
+        if (patients.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(patients);
+    }
+
 }

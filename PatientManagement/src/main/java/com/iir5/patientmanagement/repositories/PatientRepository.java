@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     Optional<Patient> findByWearableId(Long wearableId);
+    List<Patient> findByCaregiverId(Long caregiverId);
 }
 
