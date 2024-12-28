@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/users")
 @RestController
@@ -34,7 +35,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Integer id) {
-        User user = userService.findUserById(id); // Ensure this method is implemented in `UserService`
+        User user = userService.findUserById(id);
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
@@ -44,14 +45,14 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody RegisterUserDto registerUserDto) {
         User newUser = userService.signup(registerUserDto);
-        return ResponseEntity.status(201).body(newUser);  // Return the newly created user
+        return ResponseEntity.status(201).body(newUser);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody RegisterUserDto registerUserDto) {
         User updatedUser = userService.updateUser(id, registerUserDto);
         if (updatedUser == null) {
-            return ResponseEntity.notFound().build();  // Return 404 if the user doesn't exist
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(updatedUser);
     }
@@ -60,9 +61,18 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
         boolean deleted = userService.deleteUser(id);
         if (deleted) {
-            return ResponseEntity.noContent().build();  // Successfully deleted
+            return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.notFound().build();  // User not found
+            return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        User user = userService.findUserByEmail(email);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
 }

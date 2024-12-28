@@ -29,7 +29,7 @@ public class AuthApiApplication {
 				User user2 = new User()
 						.setId(2L)
 						.setFullName("test")
-						.setEmail("test")
+						.setEmail("testMail")
 						.setPassword(passwordEncoder.encode("test")); // Encode the password here
 
 				userRepository.save(user1);
