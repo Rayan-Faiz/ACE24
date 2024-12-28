@@ -18,6 +18,18 @@ public class Patient {
     @OneToOne(mappedBy = "patient", cascade = CascadeType.REMOVE)
     private SafeZone safeZone;
 
+    public Long getId() {
+        return id;
+    }
+
+    public SafeZone getSafeZone() {
+        return safeZone;
+    }
+
+    public void setSafeZone(SafeZone safeZone) {
+        this.safeZone = safeZone;
+    }
+
     public Patient() {}
 
     public Patient(Long id, String name, int age, String medicalCondition, Long wearableId, Long userId) {
