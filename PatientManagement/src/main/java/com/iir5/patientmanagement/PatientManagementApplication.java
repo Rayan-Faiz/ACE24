@@ -27,9 +27,9 @@ public class PatientManagementApplication {
     public CommandLineRunner initializeDatabase() {
         return args -> {
             // Add patients linked to caregivers
-            Patient patient1 = new Patient(1L,"Alice Johnson", 65, "Alzheimer's", 1L, 1L);
-            Patient patient2 = new Patient( 2L,"Bob Brown", 72, "Dementia", 2L, 2L);
-            Patient patient3 = new Patient( 3L,"Charlie Davis", 70, "Alzheimer's", 3L, 1L);
+            Patient patient1 = new Patient(1L, "Alice Johnson", 65, "Alzheimer's", 1L, 1L);
+            Patient patient2 = new Patient(2L, "Bob Brown", 72, "Dementia", 2L, 2L);
+            Patient patient3 = new Patient(3L, "Charlie Davis", 70, "Alzheimer's", 3L, 1L);
 
             patientRepository.save(patient1);
             patientRepository.save(patient2);
