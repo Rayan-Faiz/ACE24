@@ -65,6 +65,119 @@ Receive notifications when a patient doesn't exit their safe zone (type of alert
 Receive alert when they haven't moved from the same place during 2 days (Unusual movement)
 Alerts have 3 states : new / acknowledge / resolved
 
+## Docker-compose file
+```sh
+services:
+
+  mysql-database:
+    image: mysql
+    container_name: mysql-database
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    networks:
+      - microservices-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "ls"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+  eureka-server:
+    build:
+      context: ./eureka
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD", "ls"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+
+  auth-service:
+    build:
+      context: ./springboot-jwt-auth
+    ports:
+      - "8089:8089"
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD", "ls"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  patient-service:
+    build:
+      context: ./PatientManagement
+    ports:
+      - "8081:8081"
+    depends_on:
+      auth-service:
+        condition: service_healthy
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD", "ls"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  location-service:
+    build:
+      context: ./LocationManagement
+    ports:
+      - "8082:8082"
+    depends_on:
+      patient-service:
+        condition: service_healthy
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD", "ls"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  alert-service:
+    build:
+      context: ./AlertManagement
+    ports:
+      - "8083:8083"
+    depends_on:
+      location-service:
+        condition: service_healthy
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD", "ls"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+networks:
+  microservices-network:
+
+volumes:
+  mysql-data:
+```
+ 
+
 ## Contributing
  To contribute:
 
