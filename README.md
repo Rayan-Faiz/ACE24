@@ -10,6 +10,7 @@ A microservices-based platform for monitoring patients' safety using IoT , built
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [Contributing](#contributing)
 
 ---
