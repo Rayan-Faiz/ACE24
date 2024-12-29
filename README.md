@@ -1,3 +1,7 @@
+[Latex report.pdf](https://github.com/user-attachments/files/18269063/Latex.report.pdf)
+ 
+## Overleaf link :
+https://www.overleaf.com/read/npzjpvhsdszg#566ce3
 # Patient Monitoring and Localization System  
 
 A microservices-based platform for monitoring patients' safety using IoT , built with **Spring Boot** for the backend and **React** for the frontend. This system allows administrators to manage patients, monitor their locations , and receive notifications when patients leave their designated safe zones or stay for too long in one zone.
